@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  db:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-your_password_here}
+      MYSQL_DATABASE: ${DB_NAME:-ah_home}
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
