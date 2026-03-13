@@ -1,4 +1,14 @@
 services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html # React 빌드 결과물 연결
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf # 설정 파일 연결
+    depends_on:
+      - backend
+
   backend:
     build: ./backend
     restart: always
