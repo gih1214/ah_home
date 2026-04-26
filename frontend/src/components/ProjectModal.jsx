@@ -105,6 +105,56 @@ export default function ProjectModal({ project, onClose }) {
             </p>
           )}
 
+          {/* Overview */}
+          {project.overview && (
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">개요</h4>
+              <div className="rounded-xl border border-gray-100 dark:border-neutral-700/50 overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {[
+                      { label: '서비스', value: project.overview.service },
+                      { label: '팀 구성', value: project.overview.team },
+                      { label: '주요 역할', value: project.overview.mainRole },
+                      { label: '기여도', value: project.overview.contribution },
+                    ].map(({ label, value }) => (
+                      <tr key={label} className="border-b border-gray-100 dark:border-neutral-700/50 last:border-0">
+                        <td className="py-3 px-4 font-medium text-gray-500 dark:text-neutral-400 whitespace-nowrap w-24 bg-gray-50 dark:bg-neutral-900/40">
+                          {label}
+                        </td>
+                        <td className="py-3 px-4 text-gray-700 dark:text-neutral-200">{value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Contributions */}
+          {project.contributions?.length > 0 && (
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">핵심 기여 및 구현 상세</h4>
+              <div className="space-y-4">
+                {project.contributions.map((contrib, i) => (
+                  <div key={i} className="rounded-xl border border-gray-100 dark:border-neutral-700/50 p-4">
+                    <h5 className="font-semibold text-gray-800 dark:text-neutral-100 mb-3 text-sm">
+                      {contrib.title}
+                    </h5>
+                    <ul className="space-y-2">
+                      {contrib.items.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2 text-sm text-gray-600 dark:text-neutral-300">
+                          <span className="text-sky-500 dark:text-sky-400 shrink-0 mt-0.5">▹</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Features */}
           {project.features?.length > 0 && (
             <div className="mb-8">
@@ -140,6 +190,50 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           )}
 
+          {/* Problem Solving */}
+          {project.problemSolving?.length > 0 && (
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">기술적 해결 및 협업 포인트</h4>
+              <div className="space-y-4">
+                {project.problemSolving.map((ps, i) => (
+                  <div key={i} className="rounded-xl border border-gray-100 dark:border-neutral-700/50 p-4 space-y-3">
+                    <h5 className="font-semibold text-gray-800 dark:text-neutral-100 text-sm flex items-center gap-2">
+                      <span>🚀</span>
+                      <span>{ps.title}</span>
+                    </h5>
+                    <div className="flex items-start gap-2">
+                      <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-400/10 px-2 py-0.5 rounded shrink-0 mt-0.5">
+                        상황
+                      </span>
+                      <p className="text-sm text-gray-500 dark:text-neutral-400">{ps.situation}</p>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-400/10 px-2 py-0.5 rounded shrink-0 mt-0.5">
+                        해결
+                      </span>
+                      <p className="text-sm text-gray-500 dark:text-neutral-400">{ps.solution}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Takeaways */}
+          {project.takeaways?.length > 0 && (
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">프로젝트 성과 및 배운 점</h4>
+              <ul className="space-y-2">
+                {project.takeaways.map((t, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-neutral-300">
+                    <span className="text-sky-500 dark:text-sky-400 shrink-0">▹</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Highlights */}
           <div className="mb-8">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">주요 성과</h4>
@@ -153,7 +247,7 @@ export default function ProjectModal({ project, onClose }) {
             </ul>
           </div>
 
-          {/* Problem & Solution */}
+          {/* Problem & Solution (legacy single field) */}
           {project.problem && (
             <div className="mb-8 pt-5 border-t border-gray-100 dark:border-neutral-700/50 space-y-3">
               <div className="flex items-start gap-2">

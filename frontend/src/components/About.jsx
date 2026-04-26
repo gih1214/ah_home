@@ -19,7 +19,7 @@ export default function About() {
         </svg>
       ),
       title: '풀스택 시야',
-      desc: '프론트엔드부터 인프라까지, 서비스의 전체를 이해합니다.',
+      desc: '기획부터 구현까지, 서비스의 전체를 이해합니다.',
     },
     {
       icon: (
@@ -27,8 +27,8 @@ export default function About() {
           <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
         </svg>
       ),
-      title: '실무 적응력',
-      desc: '3개 기업, 다양한 도메인에서 즉시 기여한 경험이 있습니다.',
+      title: '성장을 기록하는 습관',
+      desc: '문제를 해결하며 배운 핵심 내용을 기록합니다.',
     },
   ];
 
@@ -42,8 +42,8 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-sm text-sky-600 dark:text-sky-400 font-medium tracking-widest uppercase mb-3">About</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">어떤 가치를 만드는 개발자인가?</h3>
-          <p className="text-gray-500 dark:text-neutral-400 leading-relaxed max-w-3xl text-base md:text-lg mb-8 transition-colors duration-300">
+          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">기록하고 고민하며, 내일의 코드를 더 낫게 만듭니다.</h3>
+          <p className="text-gray-500 dark:text-neutral-400 leading-relaxed max-w-3xl text-base md:text-lg mb-8 whitespace-pre-line transition-colors duration-300">
             {profile.description}
           </p>
 

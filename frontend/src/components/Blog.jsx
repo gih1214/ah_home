@@ -91,7 +91,7 @@ export default function Blog() {
           <h2 className="text-sm text-sky-600 dark:text-sky-400 font-medium tracking-widest uppercase mb-3">Blog</h2>
           <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-300">블로그</h3>
           <p className="text-gray-500 dark:text-neutral-400 mb-12 transition-colors duration-300">
-            주 2회, 기술적 고민과 성장을 기록하고 있습니다.
+            기술적 고민과 성장을 기록하고 있습니다.
           </p>
         </motion.div>
 
@@ -101,20 +101,20 @@ export default function Blog() {
             : posts.length > 0
               ? posts.map((post, i) => <BlogCard key={post.url_slug} post={post} index={i} />)
               : [0, 1, 2].map((i) => (
-                  <motion.div
-                    key={i}
-                    className="rounded-2xl bg-gray-50 dark:bg-neutral-800/30 border border-gray-100 dark:border-neutral-700/30 p-6 flex items-center justify-center min-h-[200px] transition-colors duration-300"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.15 }}
-                  >
-                    <p className="text-gray-400 dark:text-neutral-500 text-sm text-center transition-colors duration-300">
-                      포스트를 불러올 수 없습니다.<br />
-                      Velog 아이디를 설정해 주세요.
-                    </p>
-                  </motion.div>
-                ))}
+                <motion.div
+                  key={i}
+                  className="rounded-2xl bg-gray-50 dark:bg-neutral-800/30 border border-gray-100 dark:border-neutral-700/30 p-6 flex items-center justify-center min-h-[200px] transition-colors duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.15 }}
+                >
+                  <p className="text-gray-400 dark:text-neutral-500 text-sm text-center transition-colors duration-300">
+                    포스트를 불러올 수 없습니다.<br />
+                    Velog 아이디를 설정해 주세요.
+                  </p>
+                </motion.div>
+              ))}
         </div>
 
         <motion.div
