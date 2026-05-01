@@ -1,5 +1,103 @@
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+function ScreenshotCarousel({ thumbnails, title, type = 'web' }) {
+  const validThumbs = thumbnails?.filter(Boolean) ?? [];
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef(null);
+  const isMobile = type === 'mobile';
+
+  const hasMultiple = validThumbs.length > 1;
+
+  useEffect(() => {
+    if (!hasMultiple || isPaused) {
+      clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(() => {
+      setActiveIdx((i) => (i + 1) % validThumbs.length);
+    }, 3500);
+    return () => clearInterval(intervalRef.current);
+  }, [hasMultiple, isPaused, validThumbs.length]);
+
+  if (validThumbs.length === 0) return null;
+
+  const goPrev = () => {
+    setIsPaused(true);
+    setActiveIdx((i) => (i - 1 + validThumbs.length) % validThumbs.length);
+  };
+  const goNext = () => {
+    setIsPaused(true);
+    setActiveIdx((i) => (i + 1) % validThumbs.length);
+  };
+
+  const frameClass = isMobile
+    ? 'aspect-[9/16] max-w-[260px] mx-auto'
+    : 'aspect-video w-full';
+
+  return (
+    <div
+      className={`group relative overflow-hidden rounded-xl bg-gray-100 dark:bg-neutral-900/50 mb-8 ${frameClass}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {validThumbs.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={`${title} 화면 ${i + 1}`}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === activeIdx ? 'opacity-100' : 'opacity-0'
+            }`}
+        />
+      ))}
+
+      {hasMultiple && (
+        <>
+          {/* 좌우 화살표 — 호버 시에만 부드럽게 등장 */}
+          <button
+            type="button"
+            onClick={goPrev}
+            aria-label="이전 화면"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 hover:bg-black/50 transition-opacity duration-300 cursor-pointer"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="다음 화면"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 hover:bg-black/50 transition-opacity duration-300 cursor-pointer"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+
+          {/* 인디케이터 */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {validThumbs.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`${i + 1}번 화면으로 이동`}
+                onClick={() => {
+                  setIsPaused(true);
+                  setActiveIdx(i);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${i === activeIdx ? 'w-5 bg-sky-500' : 'w-1.5 bg-gray-400 hover:bg-gray-500'
+                  }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 const backdrop = {
   hidden: { opacity: 0 },
@@ -104,6 +202,13 @@ export default function ProjectModal({ project, onClose }) {
               {project.detailDescription}
             </p>
           )}
+
+          {/* Screenshot carousel */}
+          <ScreenshotCarousel
+            thumbnails={project.thumbnails}
+            title={project.title}
+            type={project.thumbnailType}
+          />
 
           {/* Overview */}
           {project.overview && (

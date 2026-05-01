@@ -2,6 +2,21 @@
 // 포트폴리오 데이터
 // ============================================================
 
+// — 썸네일 이미지 (Vite가 빌드 시 해시 처리 + 최적화) —
+import cpHome from '../assets/thumbnails/cp_01_home.webp';
+import cpMyLesson from '../assets/thumbnails/cp_02_mylesson.webp';
+import cpStore from '../assets/thumbnails/cp_03_store.webp';
+import cpMyPage from '../assets/thumbnails/cp_04_mypage.webp';
+import cpLessonIntro from '../assets/thumbnails/cp_05_lesson_1_intro.webp';
+import cpLesson2 from '../assets/thumbnails/cp_05_lesson_2.webp';
+import cpLessonOx from '../assets/thumbnails/cp_05_lesson_3_ox.webp';
+import cpLessonQuiz from '../assets/thumbnails/cp_05_lesson_4_quiz.webp';
+import cpLessonFinish from '../assets/thumbnails/cp_05_lesson_5_finish.webp';
+import hvHome from '../assets/thumbnails/hv_01_Home.webp';
+import hvBookList from '../assets/thumbnails/hv_02_1_단어장 리스트.webp';
+import hvBookAdd from '../assets/thumbnails/hv_02_2_단어장 추가.webp';
+import hvTestAnswer from '../assets/thumbnails/hv_03_테스트 정답.webp';
+
 export const profile = {
   name: 'AHyun Gu',
   title: 'Full-Stack Developer',
@@ -59,6 +74,18 @@ export const projects = [
     period: '2025.07 ~',
     status: '현재',
     description: '모바일에서 언제 어디서든 학습 가능한 코딩 학습 앱',
+    thumbnailType: 'mobile',
+    thumbnails: [
+      cpHome,
+      cpMyLesson,
+      cpStore,
+      cpMyPage,
+      cpLessonIntro,
+      cpLesson2,
+      cpLessonOx,
+      cpLessonQuiz,
+      cpLessonFinish,
+    ],
     tech: ['React Native', 'TypeScript', 'Node.js', 'Docker', 'AWS', 'TailwindCSS'],
     role: '기획 / 디자인 / 콘텐츠 설계 / DB 설계 / 풀스택 개발',
     highlights: [
@@ -140,38 +167,116 @@ export const projects = [
     ],
   },
   {
-    title: '헤이보카 (HeyVoca)',
+    title: 'heyvoca',
     period: '2024.04 ~',
     status: '현재',
-    description: '쉽고 재미있게 영어 단어를 학습할 수 있는 나만의 단어장 앱',
-    tech: ['React Native', 'React', 'TypeScript', 'Python', 'Flask', 'MySQL', 'SQLAlchemy', 'BeautifulSoup'],
-    role: '데이터 수집 / DB 설계 / 풀스택 개발 / QA',
+    description: '재밌고 쉽게 영어 단어를 학습하는 나만의 단어장',
+    thumbnailType: 'mobile',
+    thumbnails: [hvHome, hvBookList, hvBookAdd, hvTestAnswer],
+    tech: ['Python', 'Flask', 'SQLAlchemy', 'MySQL', 'Redis', 'React', 'Vite', 'React Native', 'Docker', 'Nginx'],
+    role: '데이터 수집/전처리 / DB 설계 / 백엔드 / 프론트엔드 / 앱',
     highlights: [
-      '영어 단어 사전 DB 설계 및 구축',
-      'BeautifulSoup 활용 웹 스크래핑으로 단어 데이터 자동 수집',
-      'Flask 기반 검색 API 개발',
-      'OCR(광학 문자 판독) 기능 연동',
-      '외부 파일(CSV, 구글 스프레드시트 등) 연동 업로드',
+      '영단어 5만+ 어휘 데이터 웹 스크래핑·전처리·이관 파이프라인 구축',
+      '5종 외부 플랫폼(Anki, Quizlet(Data, PDF), Google Sheets, Excel, CSV) 단어장 자동 연동',
+      'Anki .apkg(SQLite) 직접 파싱 + 사용자 필드 매핑 UX 설계',
+      'JOIN 최적화(joinedload)로 단어장 목록 조회 N+1 문제 해소',
     ],
+    // — 상세 모달 전용 필드 —
     github: 'https://github.com/whrksp126/heyvoca_service',
     detailDescription:
-      '헤이보카는 영어 단어 학습을 쉽고 재미있게 만들어주는 단어장 앱입니다.\n자체 영어 사전 DB를 구축하고, 웹 스크래핑을 통해 데이터를 자동 수집하며, OCR 기능과 외부 파일 연동으로 편리한 단어 등록을 지원합니다.',
+      '데이터 수집/전처리부터 백엔드, 웹, 앱까지 풀스택으로 담당하며 신규 기능을 단독으로 기획·설계·배포하는 영단어 학습 서비스',
+    overview: {
+      service: 'SM2 간격 반복 알고리즘 기반의 영어 단어 학습 서비스. 웹/앱(React Native WebView 하이브리드) 환경 모두 지원',
+      team: '백엔드/프론트/앱 전 영역에 걸쳐 다수 팀원과 협업 (역할 변동에 따라 전 영역 단독 개발로 전환)',
+      mainRole: '초기 데이터 수집·전처리 → 백엔드 API → 프론트/앱 풀스택으로 범위 확장. 현재는 신규 기능을 기획부터 배포까지 단독 담당',
+      contribution: '25',
+    },
+    contributions: [
+      {
+        title: '① 외부 데이터 통합 시스템 — 6종 플랫폼 단어장 자동 연동 (Backend + Frontend)',
+        items: [
+          '플랫폼 6종 통합: Quizlet 텍스트, Quizlet PDF, Excel(.xlsx/.xls), CSV, Anki(.apkg), Google Spreadsheets 등 6종을 모두 동일한 정규화 포맷({origin, meanings, examples})으로 처리하도록 백엔드 파이프라인 설계.',
+          '공통 영속화 레이어 추상화: bulk_persist_vocas / validate_word_lengths / read_csv_with_encoding_fallback 등 헬퍼로 분기를 일원화하여 신규 플랫폼 추가 시 파서 한 개만 추가하면 되도록 확장성 확보.',
+          'Anki .apkg 직접 파싱: ZIP 해제 → 내부 SQLite(collection.anki21/anki2/anki21b) 직접 쿼리. 신·구 버전 스키마(notetypes 테이블 vs col.models JSON) 모두 지원하고 [sound:], <img>, {{c1::answer}} cloze deletion, HTML 엔티티를 정제하는 _clean_anki_field 구현.',
+          'Quizlet PDF 파싱(pdfplumber): 3컬럼(번호+단어+뜻) / 2컬럼(단어+뜻) / 1컬럼(다중 라인) 등 다양한 레이아웃을 처리. "이 세트의 단어" 마커 이후부터 추출하고 퀴즐렛 UI 텍스트(노이즈) 정규식으로 필터링.',
+          'Anki 필드 매핑 UX: 노트 타입별 필드명을 자동 추론(autoMapFields, front/word/term 등 힌트 매칭)하고, 사용자가 dropdown으로 수동 매핑 가능. 5건 샘플 미리보기 + 백엔드가 내려준 fieldStats(maxLen, avgLen)로 50자 초과 같은 무효 매핑을 사전 차단.',
+          'Google Spreadsheets 연동: React Native 측 OAuth 액세스 토큰을 WebView postMessage로 전달받아, 사용자 시트 목록 → 탭 선택 → 데이터 조회의 3단계 플로우 구성.',
+        ],
+      },
+      {
+        title: '② 데이터 무결성 & 멱등성 처리 (Backend)',
+        items: [
+          '인코딩 fallback: CSV 업로드 시 utf-8-sig → cp949(엑셀 한국어 기본) 순서로 시도해 한글 사용자 인코딩 이슈 해소.',
+          '단어 길이/줄바꿈 검증: 영단어가 50자를 넘는 경우는 사실상 없다는 도메인 가정으로 WORD_MAX_LEN=50 정책을 정해 표 추출이 깨진 케이스(여러 행이 한 셀로 합쳐진 경우)를 즉시 거부.',
+          '중복 단어 병합: 동일 사용자가 같은 단어를 여러 단어장에서 가져올 때 UserVoca를 재사용하고 voca_meanings/voca_examples를 중복 제거 후 병합(merge_meanings/merge_examples).',
+          '고아 데이터 정리: 단어장 삭제 시 해당 단어가 다른 단어장에 매핑되어 있는지 확인 후, 매핑이 없을 때만 UserVoca에서 삭제하여 학습 이력 보존.',
+          '벌크 처리 최적화: bulk_insert_mappings + 사전 일괄 조회로 단어장 1건당 수백~수천 건의 단어를 한 트랜잭션 내에서 처리.',
+        ],
+      },
+      {
+        title: '③ 영단어 사전 데이터 구축 및 DB 스키마 설계 (Data + DB)',
+        items: [
+          '웹 스크래핑 파이프라인: Python·BeautifulSoup으로 영단어 5만+ 어휘와 뜻·예문·발음 데이터를 수집·정제 후, 로컬 DB → 서버 DB 마이그레이션 프로세스 주도. 초기 구축 후 팀 내 다른 멤버에게 인계되어 현재까지 서비스의 핵심 사전 데이터로 활용.',
+          '관계 모델링: 단어(Voca) ↔ 단어장(VocaBook) ↔ 사용자(User) ↔ 사용자 단어장(UserVocaBook) ↔ 학습 상태(SM2 데이터) 간 N:N 관계를 매핑 테이블(VocaBookMap, UserVocaBookMap, AdminVocaBookMap 등)로 분리하여 단어 메타데이터와 학습 메타데이터를 독립적으로 관리.',
+          'JSON 컬럼 활용: SM2 학습 알고리즘 상태(ef, repetition, interval, nextReview 등)와 단어별 뜻/예문은 빈번한 스키마 변경에 대응하기 위해 JSON 직렬화로 저장.',
+        ],
+      },
+      {
+        title: '④ 조회 성능 최적화 (Backend)',
+        items: [
+          'N+1 해소: 단어장 목록 조회 API에서 SQLAlchemy joinedload로 UserVocaBook → UserVocaBookMap → UserVoca를 한 번의 쿼리로 적재해 단어장 수가 늘어도 쿼리 수가 일정하도록 개선.',
+          '단어장 진입 응답 일원화: build_voca_book_response / build_vocas_for_book 헬퍼로 응답 직렬화 로직을 통일하여 GET 단건/목록/생성 응답이 동일한 스키마를 갖도록 정리.',
+        ],
+      },
+    ],
     features: [
       {
-        title: '영어 사전 DB 구축 & 검색 API',
-        description: 'BeautifulSoup으로 단어 데이터를 자동 수집하고, Flask 기반 검색 API를 통해 빠른 단어 검색을 제공합니다.',
-        gif: '',
+        title: '외부 데이터 통합 — Anki / Excel / CSV / Quizlet / Google Sheets',
+        description:
+          '6종 외부 플랫폼의 단어 데이터를 단어장으로 자동 변환. 플랫폼별 포맷 차이(.apkg SQLite, PDF 표, .xlsx, .csv, 시트 API)를 추상화한 통합 파이프라인으로 처리합니다.',
+        gif: '',  // 외부 데이터 통합 화면 녹화
       },
       {
-        title: 'OCR 기능 연동',
-        description: '카메라로 촬영한 텍스트를 OCR로 인식하여 자동으로 단어장에 등록할 수 있습니다.',
-        gif: '',
+        title: 'Anki 필드 매핑 UX',
+        description:
+          '.apkg 내부 SQLite를 파싱해 노트 타입과 필드 구조를 추출. heyvoca의 word/meaning/pronunciation/example 필드에 자동 매핑하고, 사용자가 직접 매핑을 조정하면 5건 샘플로 즉시 미리보기를 제공합니다.',
+        gif: '',  // 필드 매핑 + 미리보기 화면
       },
       {
-        title: '외부 파일 연동 업로드',
-        description: 'CSV, 구글 스프레드시트 등 외부 파일을 연동하여 대량의 단어를 한번에 업로드할 수 있습니다.',
-        gif: '',
+        title: 'Google Spreadsheets 연동',
+        description:
+          'React Native에서 발급한 OAuth 액세스 토큰을 WebView postMessage로 전달받아, 사용자 시트 목록 → 탭 선택 → 데이터 조회까지 앱-웹 하이브리드로 처리합니다.',
+        gif: '',  // 시트 선택부터 단어장 생성까지
       },
+    ],
+    problemSolving: [
+      {
+        title: '서로 다른 6종 플랫폼 데이터 포맷의 일관 처리',
+        situation:
+          '각 외부 플랫폼이 사용하는 포맷이 모두 달랐다. Anki는 .apkg(ZIP+SQLite), Quizlet은 텍스트와 PDF, Excel/CSV는 사용자가 직접 작성한 헤더 양식, Google Sheets는 OAuth API. 플랫폼별로 별도 처리 코드가 늘어나면 신규 플랫폼이 추가될 때마다 검증·예외 처리·중복 단어 병합 로직이 중복 구현될 위험이 있었음.',
+        solution:
+          '백엔드 파이프라인을 "파싱 → 정규화 → 검증 → 영속화"의 4단계로 분리. 모든 파서가 공통 포맷({origin, meanings, examples})을 반환하도록 인터페이스를 통일하고, 영속화는 bulk_persist_vocas로 단일화. 검증(50자 제한, 줄바꿈 차단)과 중복 병합(merge_meanings/merge_examples)은 모든 경로에서 재사용. 결과적으로 신규 플랫폼 추가 시 파서 함수 한 개만 작성하면 나머지는 기존 헬퍼가 처리.',
+      },
+      {
+        title: 'Anki 필드 자유도와 사용자 혼란 사이의 균형',
+        situation:
+          'Anki는 노트 타입(Note Type)에 따라 필드 이름과 개수가 사용자마다 자유롭다. heyvoca의 단어/뜻/예문 구조에 어떤 필드를 매핑할지 사용자가 직접 정해야 하지만, 매핑을 잘못하면 50자가 넘는 문장이 단어 필드에 들어가 DB 정합성이 깨지는 문제가 발생.',
+        solution:
+          '두 단계로 해결. (1) 프론트에서 필드명 키워드(front/word/term/단어 등)로 자동 추론하여 첫 매핑을 미리 채워줌. (2) 백엔드 미리보기 응답에 노트 전체 기준 필드 통계(fieldStats: avgLen, maxLen)를 포함시켜, 사용자가 매핑한 word 필드의 maxLen이 50자를 넘으면 업로드 버튼 단계에서 즉시 거부. 단순 5건 샘플로는 놓칠 수 있는 케이스를 전체 데이터 기준으로 가드.',
+      },
+      {
+        title: 'CSV 한글 인코딩 문제',
+        situation:
+          '한국 사용자가 엑셀에서 "다른 이름으로 저장"으로 만든 CSV는 cp949로 저장되는 경우가 많았고, 일부는 UTF-8 BOM 포함. 단일 인코딩으로 읽으면 한쪽이 깨지는 문제가 반복적으로 발생.',
+        solution:
+          'utf-8-sig(BOM 포함 UTF-8) → cp949 순서로 fallback 하는 read_csv_with_encoding_fallback 헬퍼를 두어 두 케이스를 모두 커버. 둘 다 실패하면 사용자에게 명확한 안내 메시지(UTF-8 또는 CP949로 저장 요청)를 반환하도록 설계.',
+      },
+    ],
+    takeaways: [
+      '확장 가능한 파이프라인 설계: 6종이라는 다양한 외부 포맷을 다루며, 추상화 레이어를 잘 두면 신규 요구사항에 드는 비용이 선형이 아닌 상수에 가까워진다는 것을 체감.',
+      '풀스택 사고: 데이터 수집/전처리 → 백엔드 API → 프론트 UX → 앱 WebView 연동까지 하나의 기능을 끝까지 책임지면서, 어느 한 레이어의 결정이 다른 레이어에 어떤 비용을 만드는지 직접 가늠하는 감각을 키움.',
+      '도메인 기반 검증 정책: "영단어는 50자를 넘지 않는다"처럼 도메인 지식에서 출발한 가드가 단순한 length check보다 훨씬 많은 데이터 깨짐을 막아준다는 것을 학습.',
+      '레거시 인계와 협업: 초기 구축한 스크래핑 파이프라인을 다른 멤버에게 인계한 뒤에도 해당 데이터가 서비스의 핵심으로 동작 중이라는 점에서, 코드보다 인터페이스/데이터 계약을 명확히 두는 것의 중요성을 배움.',
     ],
   },
   {
@@ -179,6 +284,12 @@ export const projects = [
     period: '2023.04 - 2024.02',
     status: '완료',
     description: '식당, 카페 등의 매장을 효율적으로 관리하기 위한 매장 관리 웹사이트',
+    thumbnailType: 'web',
+    thumbnails: [
+      // '/thumbnails/orderandgo-1.webp',
+      // '/thumbnails/orderandgo-2.webp',
+      // '/thumbnails/orderandgo-3.webp',
+    ],
     tech: ['Python', 'Flask', 'MySQL', 'SQLAlchemy', 'JavaScript'],
     role: '백엔드 API 개발',
     highlights: [
@@ -213,6 +324,11 @@ export const projects = [
     period: '2022.03 - 2022.05',
     status: '완료',
     description: '반려동물 동반 가능 관광 정보 안내 플랫폼',
+    thumbnailType: 'web',
+    thumbnails: [
+      // '/thumbnails/nyangmeong-1.webp',
+      // '/thumbnails/nyangmeong-2.webp',
+    ],
     tech: ['Java', 'Spring Boot', 'Spring Data JPA', 'MariaDB', 'Mustache'],
     role: '정보 구조(IA) 설계 / 백엔드 API 개발',
     highlights: [
