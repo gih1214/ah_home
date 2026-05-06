@@ -50,8 +50,16 @@ function ProjectCard({ project, index, onSelect }) {
         {/* Center: Project info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-3 mb-2">
-            <h4 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
-              {project.title}
+            <h4 className="flex items-center gap-2 text-lg md:text-xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
+              {project.logo && (
+                <img
+                  src={project.logo}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-5 md:h-6 w-auto shrink-0 rounded-md"
+                />
+              )}
+              <span>{project.title}</span>
             </h4>
             <div className="flex items-center gap-2 shrink-0 sm:hidden">
               <span className="text-xs text-gray-400 dark:text-neutral-500">{project.period}</span>

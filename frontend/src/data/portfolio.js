@@ -17,6 +17,10 @@ import hvBookList from '../assets/thumbnails/hv_02_1_단어장 리스트.webp';
 import hvBookAdd from '../assets/thumbnails/hv_02_2_단어장 추가.webp';
 import hvTestAnswer from '../assets/thumbnails/hv_03_테스트 정답.webp';
 
+// — 프로젝트 로고 아이콘 —
+import codingptLogo from '../assets/icon/codingpt_icon.svg';
+import heyvocaLogo from '../assets/icon/heyvoca_icon.svg';
+
 export const profile = {
   name: 'AHyun Gu',
   title: 'Full-Stack Developer',
@@ -71,6 +75,7 @@ export const techStack = {
 export const projects = [
   {
     title: '코딩피티 (CodingPT)',
+    logo: codingptLogo,
     period: '2025.07 ~',
     status: '현재',
     description: '모바일에서 언제 어디서든 학습 가능한 코딩 학습 앱',
@@ -168,13 +173,14 @@ export const projects = [
   },
   {
     title: 'heyvoca',
+    logo: heyvocaLogo,
     period: '2024.04 ~',
     status: '현재',
     description: '재밌고 쉽게 영어 단어를 학습하는 나만의 단어장',
     thumbnailType: 'mobile',
     thumbnails: [hvHome, hvBookList, hvBookAdd, hvTestAnswer],
     tech: ['Python', 'Flask', 'SQLAlchemy', 'MySQL', 'Redis', 'React', 'Vite', 'React Native', 'Docker', 'Nginx'],
-    role: '데이터 수집/전처리 / DB 설계 / 백엔드 / 프론트엔드 / 앱',
+    role: '데이터 수집 / 백엔드 / 프론트엔드 / 앱',
     highlights: [
       '영단어 5만+ 어휘 데이터 웹 스크래핑·전처리·이관 파이프라인 구축',
       '5종 외부 플랫폼(Anki, Quizlet(Data, PDF), Google Sheets, Excel, CSV) 단어장 자동 연동',
@@ -183,12 +189,12 @@ export const projects = [
     ],
     // — 상세 모달 전용 필드 —
     github: 'https://github.com/whrksp126/heyvoca_service',
-    detailDescription:
-      '데이터 수집/전처리부터 백엔드, 웹, 앱까지 풀스택으로 담당하며 신규 기능을 단독으로 기획·설계·배포하는 영단어 학습 서비스',
+    // detailDescription:
+    // '데이터 수집/전처리부터 백엔드, 웹, 앱까지 풀스택으로 담당하며 신규 기능을 단독으로 기획·설계·배포하는 영단어 학습 서비스',
     overview: {
-      service: 'SM2 간격 반복 알고리즘 기반의 영어 단어 학습 서비스. 웹/앱(React Native WebView 하이브리드) 환경 모두 지원',
-      team: '백엔드/프론트/앱 전 영역에 걸쳐 다수 팀원과 협업 (역할 변동에 따라 전 영역 단독 개발로 전환)',
-      mainRole: '초기 데이터 수집·전처리 → 백엔드 API → 프론트/앱 풀스택으로 범위 확장. 현재는 신규 기능을 기획부터 배포까지 단독 담당',
+      service: '',
+      team: '마케팅 1명, 디자이너 1명, 개발 3명',
+      mainRole: '초기 데이터 수집·전처리 → 백엔드 API → 프론트/앱 풀스택으로 범위 확장',
       contribution: '25',
     },
     contributions: [
@@ -234,19 +240,19 @@ export const projects = [
         title: '외부 데이터 통합 — Anki / Excel / CSV / Quizlet / Google Sheets',
         description:
           '6종 외부 플랫폼의 단어 데이터를 단어장으로 자동 변환. 플랫폼별 포맷 차이(.apkg SQLite, PDF 표, .xlsx, .csv, 시트 API)를 추상화한 통합 파이프라인으로 처리합니다.',
-        gif: '',  // 외부 데이터 통합 화면 녹화
+        gif: '/src/assets/gif/03_file_upload.gif',
       },
       {
         title: 'Anki 필드 매핑 UX',
         description:
           '.apkg 내부 SQLite를 파싱해 노트 타입과 필드 구조를 추출. heyvoca의 word/meaning/pronunciation/example 필드에 자동 매핑하고, 사용자가 직접 매핑을 조정하면 5건 샘플로 즉시 미리보기를 제공합니다.',
-        gif: '',  // 필드 매핑 + 미리보기 화면
+        gif: '/src/assets/gif/01_anki.gif',
       },
       {
         title: 'Google Spreadsheets 연동',
         description:
           'React Native에서 발급한 OAuth 액세스 토큰을 WebView postMessage로 전달받아, 사용자 시트 목록 → 탭 선택 → 데이터 조회까지 앱-웹 하이브리드로 처리합니다.',
-        gif: '',  // 시트 선택부터 단어장 생성까지
+        gif: '/src/assets/gif/02_google_sheets.gif',
       },
     ],
     problemSolving: [
