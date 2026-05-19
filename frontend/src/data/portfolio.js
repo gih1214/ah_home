@@ -23,13 +23,14 @@ import heyvocaLogo from '../assets/icon/heyvoca_icon.svg';
 
 export const profile = {
   name: 'AHyun Gu',
-  title: 'Full-Stack Developer',
-  tagline: '안녕하세요. 기획하는 개발자 구아현입니다.',
+  title: 'Software Engineer',
+  tagline: '기획하는 개발자, 구아현입니다.',
   description:
-    `화면 너머의 사용자가 겪는 불편함에 집중할 때 가장 몰입합니다. 데이터 수집부터 배포까지
-서비스가 사용자에게 닿는 전 과정을 직접 설계하며, 기술 자체가 만드는 실질적인 가치에 비중을 둡니다.
-여러 실무를 거치며 데이터 연동부터 UI 개발까지 다양한 도메인을 경험했고,
-이 과정에서 얻은 인사이트를 동료들과 나누며 함께 성장하는 가치를 믿습니다.`,
+    `데이터 수집, 백엔드 API, 웹/앱 프론트엔드, 인프라까지 — 서비스를 만드는
+여러 단계를 직접 거치며 일했습니다. 한 분야의 깊이보다는, 전체 흐름을 보고
+필요한 곳에 손을 댈 수 있는 감각을 키워왔습니다.
+새로운 도메인에 빠르게 적응하고, 기획과 개발 사이의 간극을 메우는 역할을
+즐깁니다.`,
   velog: 'gucandoit',
   github: 'gih1214',
   email: 'rndkgus24@gmail.com',
@@ -92,65 +93,64 @@ export const projects = [
       cpLessonFinish,
     ],
     tech: ['React Native', 'TypeScript', 'Node.js', 'Docker', 'AWS', 'TailwindCSS'],
-    role: '기획 / 디자인 / 콘텐츠 설계 / DB 설계 / 풀스택 개발',
+    role: '기획 / DB 설계 / 앱 프론트엔드 / 백엔드 API 개발',
     highlights: [
       '구글 소셜 로그인(Access/Refresh Token) 및 JWT 인증 구현',
       '학습 콘텐츠 기획 및 DB 설계, 학습 데이터 관리',
       '코드 자동 실행 터미널 구현',
-      'TTS 활용 음성 학습, 코드 빈칸 채우기 등 인터랙티브 학습 기능',
+      '슬라이드 기반 인터랙티브 학습 모듈 확장 및 고도화',
     ],
     // — 상세 모달 전용 필드 —
     github: 'https://github.com/whrksp126/codingpt',
     detailDescription:
-      '학습 엔진 고도화 및 비즈니스 로직 전반을 구현한 하이브리드 교육 앱',
+      '학습 엔진 고도화 및 비즈니스 로직을 담당한 하이브리드 교육 앱',
     overview: {
       service: '14종의 인터랙티브 모듈을 활용한 슬라이드 기반 프로그래밍 학습 앱',
-      team: '조건호, 구아현 (앱 프론트엔드 및 백엔드 로직 전담)',
-      mainRole: '앱 UI/UX 전체 구현, 학습 엔진 모듈화 및 고도화, 비즈니스 핵심 API 및 DB 모델링',
+      team: '조건호, 구아현 (앱 프론트엔드 및 백엔드 로직 담당)',
+      mainRole: '앱 UI 구현, 학습 엔진 모듈화, 비즈니스 API 및 DB 모델링',
       contribution: '70%',
     },
     contributions: [
       {
         title: '① 학습 엔진 고도화 및 인터랙티브 모듈 확장 (App)',
         items: [
-          '엔진 리팩토링 및 확장: 초기 설계된 모듈 구조를 바탕으로 확장성을 고려하여 고도화. CodeFillTheGapV2, ParagraphV2, CharacterSpeechBubble 등 10여종의 학습 컴포넌트로 확장 구현.',
-          '학습 시스템 로직 구현: 타이머 기반의 Auto-Advance(슬라이드 자동 전환) 시스템과 제스처를 활용한 일시정지/재개 기능을 구현하여 동적인 학습 흐름 구축.',
-          '퀴즈 시스템 리뉴얼: 기존 객관식/빈칸 채우기 기능을 고도화(v2)하고, OX 퀴즈 모듈을 신규 개발하여 학습 콘텐츠의 다양성 확보.',
-          '콘텐츠 연동: ElevenLabs API로 생성된 TTS 음성 파일을 슬라이드별 큐 관리를 통해 자동 재생되도록 구현.',
+          '엔진 리팩토링 및 확장: 초기 설계된 모듈 구조를 기반으로 확장성을 고려하여 고도화. CodeFillTheGapV2, ParagraphV2, CharacterSpeechBubble 등 10여 종의 학습 컴포넌트를 확장 구현.',
+          '학습 흐름 로직 구현: 타이머 기반 Auto-Advance(슬라이드 자동 전환)와 제스처 기반 일시정지/재개 기능 구현.',
+          '퀴즈 모듈 개선: 기존 객관식/빈칸 채우기 기능을 v2로 개선하고, OX 퀴즈 모듈을 신규 개발.',
+          '음성 콘텐츠 연동: 슬라이드별 TTS 음성 파일을 큐로 관리해 자동 재생되도록 구현.',
         ],
       },
       {
-        title: '② 사용자 경험을 위한 대시보드 및 게이미피케이션 (App)',
+        title: '② 학습 대시보드 구현 (App)',
         items: [
-          '학습 시각화: AnimatedCircularProgress를 이용한 원형 차트 및 GitHub 스타일의 6개월 학습 히트맵 컴포넌트를 직접 구현하여 학습 동기 부여.',
-          '하트 시스템(게이미피케이션): 30분 간격 자동 충전 로직 및 실시간 타이머 UI를 구축. 앱 내 모든 탭에서 접근 가능한 전역 모달 시스템으로 사용자 편의성 증대.',
-          '최근 학습 추적: AsyncStorage를 활용하여 사용자가 마지막으로 학습한 위치를 저장하고 복원하는 브랜치 로직 설계.',
+          '학습 시각화: AnimatedCircularProgress 기반 원형 차트와 GitHub 스타일의 6개월 학습 히트맵 컴포넌트 구현.',
+          '최근 학습 추적: AsyncStorage를 활용해 사용자가 마지막으로 학습한 위치를 저장/복원하는 로직 설계.',
         ],
       },
       {
-        title: '③ 비즈니스 핵심 API 및 데이터 모델링 (Backend)',
+        title: '③ 비즈니스 API 및 데이터 모델링 (Backend)',
         items: [
-          '인증 시스템: Google OAuth를 연동한 소셜 로그인 및 JWT 기반 인증 체계(Access/Refresh Token) 구축. 보안을 위해 만료 임박 시 Refresh Token 자동 재발급 로직 포함.',
-          'DB 모델 설계: 교육 서비스의 복잡한 계층 구조(Product → Class → Section → Lesson → Slide)를 효율적으로 관리하기 위해 25개의 모델 및 매핑 테이블을 설계하고 API 구현.',
-          '수강/결제 트랜잭션: 수강 신청 시 MyClass 생성과 상태 초기화가 원자적으로 이루어지도록 데이터베이스 트랜잭션 처리.',
+          '인증 시스템: Google OAuth 소셜 로그인 및 JWT 기반 인증 체계(Access/Refresh Token) 구축.',
+          'DB 모델 설계: 교육 서비스의 계층 구조(Product → Class → Section → Lesson → Slide)를 관리하기 위해 25개의 모델 및 매핑 테이블 설계 후 API 구현.',
         ],
       },
     ],
+
     features: [
       {
         title: '구글 소셜 로그인 및 JWT 인증',
-        description: 'Access/Refresh Token 기반 인증 플로우를 구현하여 안전하고 편리한 로그인 경험을 제공합니다.',
-        gif: '/src/assets/gif/whale.gif',
+        description: 'Access/Refresh Token 기반 인증 플로우를 구현해 로그인 세션을 관리합니다.',
+        gif: '/src/assets/gif/cp_01_login.gif',
       },
       {
         title: '코드 자동 실행 터미널',
-        description: '앱 내에서 직접 코드를 작성하고 실행 결과를 확인할 수 있는 터미널 환경을 구현했습니다.',
-        gif: '/src/assets/gif/whale.gif',
+        description: '앱 내에서 코드를 작성하고 실행 결과를 확인할 수 있는 터미널 환경을 구현했습니다.',
+        gif: '/src/assets/gif/cp_02_terminal.gif',
       },
       {
-        title: 'TTS 음성 학습 & 빈칸 채우기',
-        description: 'TTS를 활용한 음성 기반 학습과 코드 빈칸 채우기 퀴즈로 인터랙티브한 학습 경험을 제공합니다.',
-        gif: '/src/assets/gif/whale.gif',
+        title: '인터랙티브 학습 모듈',
+        description: '빈칸 채우기, OX 퀴즈, 객관식 등 다양한 학습 컴포넌트를 슬라이드 기반으로 제공합니다.',
+        gif: '/src/assets/gif/cp_03_quiz_alert.gif',
       },
     ],
     problemSolving: [
@@ -240,19 +240,19 @@ export const projects = [
         title: '외부 데이터 통합 — Anki / Excel / CSV / Quizlet / Google Sheets',
         description:
           '6종 외부 플랫폼의 단어 데이터를 단어장으로 자동 변환. 플랫폼별 포맷 차이(.apkg SQLite, PDF 표, .xlsx, .csv, 시트 API)를 추상화한 통합 파이프라인으로 처리합니다.',
-        gif: '/src/assets/gif/03_file_upload.gif',
+        gif: '/src/assets/gif/hv_03_file_upload.gif',
       },
       {
         title: 'Anki 필드 매핑 UX',
         description:
           '.apkg 내부 SQLite를 파싱해 노트 타입과 필드 구조를 추출. heyvoca의 word/meaning/pronunciation/example 필드에 자동 매핑하고, 사용자가 직접 매핑을 조정하면 5건 샘플로 즉시 미리보기를 제공합니다.',
-        gif: '/src/assets/gif/01_anki.gif',
+        gif: '/src/assets/gif/hv_01_anki.gif',
       },
       {
         title: 'Google Spreadsheets 연동',
         description:
           'React Native에서 발급한 OAuth 액세스 토큰을 WebView postMessage로 전달받아, 사용자 시트 목록 → 탭 선택 → 데이터 조회까지 앱-웹 하이브리드로 처리합니다.',
-        gif: '/src/assets/gif/02_google_sheets.gif',
+        gif: '/src/assets/gif/hv_02_google_sheets.gif',
       },
     ],
     problemSolving: [
