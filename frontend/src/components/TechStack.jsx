@@ -6,6 +6,7 @@ const categories = [
   { key: 'frontend',  label: 'Frontend' },
   { key: 'backend',   label: 'Backend' },
   { key: 'infra',     label: 'Infra & Tools' },
+  { key: 'ai',        label: 'AI Tools' },
 ];
 
 function IconRow({ items, delayBase = 0 }) {
