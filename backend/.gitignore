@@ -1,4 +1,0 @@
-.env
-*.key
-node_modules/
-dist/
