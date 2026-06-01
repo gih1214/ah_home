@@ -1,5 +1,59 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+
+function ContributionAccordion({ contrib, defaultOpen = false }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className="rounded-xl border border-gray-100 dark:border-neutral-700/50 overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="w-full flex items-center justify-between gap-3 px-4 py-3.5 text-left cursor-pointer hover:bg-gray-50 dark:hover:bg-neutral-700/30 transition-colors duration-200"
+      >
+        <h5 className="font-semibold text-gray-800 dark:text-neutral-100 text-sm">
+          {contrib.title}
+        </h5>
+        <motion.svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-gray-400 dark:text-neutral-500 shrink-0"
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </motion.svg>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <ul className="space-y-2 px-4 pb-4">
+              {contrib.items.map((item, j) => (
+                <li key={j} className="flex items-start gap-2 text-sm text-gray-600 dark:text-neutral-300">
+                  <span className="text-sky-500 dark:text-sky-400 shrink-0 mt-0.5">▹</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 function ScreenshotCarousel({ thumbnails, title, type = 'web' }) {
   const validThumbs = thumbnails?.filter(Boolean) ?? [];
@@ -279,42 +333,29 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           )}
 
-          {/* Highlights */}
-          <div className="mb-8">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">담당 업무 요약</h4>
-            <ul className="space-y-2">
-              {project.highlights.map((h) => (
-                <li key={h} className="flex items-start gap-2 text-sm text-gray-600 dark:text-neutral-300">
-                  <span className="text-sky-500 dark:text-sky-400 shrink-0">▹</span>
-                  <span>{h}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contributions */}
-          {project.contributions?.length > 0 && (
+          {/* Contributions — accordion toggle (fallback: highlights list) */}
+          {project.contributions?.length > 0 ? (
             <div className="mb-8">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">구현 내역</h4>
-              <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">담당 업무</h4>
+              <div className="space-y-3">
                 {project.contributions.map((contrib, i) => (
-                  <div key={i} className="rounded-xl border border-gray-100 dark:border-neutral-700/50 p-4">
-                    <h5 className="font-semibold text-gray-800 dark:text-neutral-100 mb-3 text-sm">
-                      {contrib.title}
-                    </h5>
-                    <ul className="space-y-2">
-                      {contrib.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-gray-600 dark:text-neutral-300">
-                          <span className="text-sky-500 dark:text-sky-400 shrink-0 mt-0.5">▹</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ContributionAccordion key={i} contrib={contrib} defaultOpen={i === 0} />
                 ))}
               </div>
             </div>
-          )}
+          ) : project.highlights?.length > 0 ? (
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">담당 업무</h4>
+              <ul className="space-y-2">
+                {project.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2 text-sm text-gray-600 dark:text-neutral-300">
+                    <span className="text-sky-500 dark:text-sky-400 shrink-0">▹</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           {/* Problem Solving */}
           {project.problemSolving?.length > 0 && (

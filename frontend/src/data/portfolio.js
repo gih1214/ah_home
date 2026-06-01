@@ -36,7 +36,8 @@ import hvGoogleSheetsGif from '../assets/gif/hv_02_google_sheets.gif';
 import hvFileUploadGif from '../assets/gif/hv_03_file_upload.gif';
 
 export const profile = {
-  name: 'AHyun Gu',
+  name: 'AHyun Gu Portfolio',
+  heroName: '안녕하세요.\n개발자 구아현입니다.',
   title: 'Software Engineer',
   tagline: '기획부터 개발까지, 서비스 전반을 다룹니다.',
   description:
@@ -140,6 +141,7 @@ export const projects = [
           '학습 흐름 로직 구현: 타이머 기반 Auto-Advance(슬라이드 자동 전환)와 제스처 기반 일시정지/재개 기능 구현',
           '퀴즈 모듈 개선: 객관식/빈칸 채우기 기능을 v2로 개선하고, OX 퀴즈 모듈을 신규 개발',
           '음성 콘텐츠 연동: 슬라이드별 TTS 음성 파일 큐 관리 및 자동 재생 구현',
+          '코드 자동 실행 터미널: 앱 내에서 코드 실행 결과를 확인할 수 있는 터미널 환경 구현',
         ],
       },
       {
@@ -154,6 +156,7 @@ export const projects = [
         items: [
           '인증 시스템: Google OAuth 소셜 로그인 및 JWT 기반 인증 체계(Access/Refresh Token) 구축',
           'DB 모델 설계: 교육 서비스의 계층 구조(Product → Class → Section → Lesson → Slide)를 관리하기 위해 25개의 모델 및 매핑 테이블 설계 후 API 구현',
+          '학습 콘텐츠 기획 및 DB 설계: 학습 데이터 구조를 설계하고 콘텐츠 관리 체계 구축',
         ],
       },
     ],
@@ -374,6 +377,17 @@ export const projects = [
 ];
 
 export const experiences = [
+  {
+    company: '코딩피티 (CodingPT)',
+    period: '2025.07 - 2026.02',
+    role: '개발팀 / 사원',
+    highlights: [
+      'React Native 기반 모바일 코딩 학습 앱의 기획부터 앱 프론트엔드, 백엔드 API 구현',
+      'Google OAuth 소셜 로그인과 JWT 인증 체계를 구축해 사용자 세션 관리 및 보안 흐름 구현',
+      '슬라이드 기반 학습 엔진을 확장하여 코드 빈칸 채우기, OX 퀴즈, 객관식 등 10여 종 인터랙티브 모듈 고도화',
+      '앱 내 코드 실행 터미널과 웹뷰를 이용한 코드 실습 및 검증 시스템 구현',
+    ],
+  },
   {
     company: '(주)바다플랫폼',
     period: '2024.09 - 2025.06',
