@@ -7,8 +7,8 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-sky-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 transition-colors duration-300">
         <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-sky-900/30 dark:via-neutral-900 dark:to-indigo-900/30 animate-gradient" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-200/40 dark:bg-sky-500/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-200/30 dark:bg-indigo-500/10 rounded-full blur-3xl animate-float-delayed" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-200/32 dark:bg-sky-500/8 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-sky-100/16 dark:bg-sky-400/5 rounded-full blur-3xl animate-float-delayed" />
       </div>
 
       {/* Bottom fade — blends into About's white/dark bg */}
